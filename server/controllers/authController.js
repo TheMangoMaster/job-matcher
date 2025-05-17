@@ -3,6 +3,8 @@ const jwt = require("jsonwebtoken");
 const db = require("../db");
 
 const register = async (req, res) => {
+  console.log("🔍 Received registration request:", req.body);
+
   const { first_name, last_name, email, password, role } = req.body;
 
   if (!first_name || !last_name || !email || !password || !role) {
@@ -24,7 +26,7 @@ const register = async (req, res) => {
     const user = result.rows[0];
     res.status(201).json({ id: user.id, email: user.email, role: user.role });
   } catch (err) {
-    console.error(err);
+    console.error("❌ Registration failed:", err);
     res.status(500).json({ message: "Server error." });
   }
 };
