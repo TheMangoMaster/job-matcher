@@ -8,6 +8,7 @@ export default function Register() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log("📤 Sending registration...", form);
     
     try {
       const res = await API.post("/register", form);
